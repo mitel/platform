@@ -153,7 +153,7 @@ export default class NavbarDropdown extends React.Component {
             window.mm_config.EnableIncomingWebhooks === 'true' ||
             window.mm_config.EnableOutgoingWebhooks === 'true' ||
             window.mm_config.EnableCommands === 'true';
-        if (integrationsEnabled && (isAdmin || window.EnableOnlyAdminIntegrations !== 'true')) {
+        if (integrationsEnabled && (isAdmin || window.mm_config.EnableOnlyAdminIntegrations !== 'true')) {
             integrationsLink = (
                 <li>
                     <Link to={'/' + Utils.getTeamNameFromUrl() + '/settings/integrations'}>
@@ -292,7 +292,10 @@ export default class NavbarDropdown extends React.Component {
                         <li>
                             <a
                                 href='#'
-                                onClick={() => this.setState({showUserSettingsModal: true})}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    this.setState({showUserSettingsModal: true});
+                                }}
                             >
                                 <FormattedMessage
                                     id='navbar_dropdown.accountSettings'

@@ -169,8 +169,11 @@ export default class Sidebar extends React.Component {
             $('.sidebar--left .nav-pills__container').perfectScrollbar();
         }
 
-        this.refs.container.scrollTop = 0;
-        $('.nav-pills__container').perfectScrollbar('update');
+        // reset the scrollbar upon switching teams
+        if (this.state.currentTeam !== prevState.currentTeam) {
+            this.refs.container.scrollTop = 0;
+            $('.nav-pills__container').perfectScrollbar('update');
+        }
 
         // close the LHS on mobile when you change channels
         if (this.state.activeId !== prevState.activeId) {
