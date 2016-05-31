@@ -372,4 +372,4 @@ nuke: clean clean-docker
 	rm -rf data
 
 setup-mac:
-	echo $$(boot2docker ip 2> /dev/null) dockerhost | sudo tee -a /etc/hosts
+	echo $$(docker-machine ip dev) dockerhost | sudo tee -a /etc/hosts
